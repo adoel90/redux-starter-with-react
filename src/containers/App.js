@@ -13,6 +13,13 @@ class App extends Component {
     super();
 
   }
+
+  componentDidMount(){
+    console.log(this.props);
+    console.log(this.state);
+    const { fetchRecipesDispatch } = this.props;
+    fetchRecipesDispatch();
+  }
   
   render() {
     // const { children, inputValue } = this.props
@@ -26,7 +33,8 @@ class App extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  
+
+  list : state
 
 })
 

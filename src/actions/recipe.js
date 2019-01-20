@@ -1,4 +1,5 @@
-import { ADD_RECIPE, GET_LIST_RECIPE, FETCH_RECIPES } from '../constants/action-types';
+import { ADD_RECIPE, GET_LIST_RECIPE, FETCH_RECIPES, API_REQUEST } from '../constants/action-types';
+
 
 export const addReceipent = (name) => ({
     type: ADD_RECIPE, name
@@ -9,8 +10,14 @@ export const getListRecipe = (data) => ({
     payload: data 
 })
 
+// export const fetchRecipes = () => ({
+//     type: FETCH_RECIPES
+// });
+
 export const fetchRecipes = () => ({
-    type: FETCH_RECIPES
+    type: API_REQUEST,
+    payload: {
+      url: '../db/db.json',
+      next: FETCH_RECIPES
+    }
   });
-
-
