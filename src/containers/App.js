@@ -15,26 +15,33 @@ class App extends Component {
   }
 
   componentDidMount(){
-    console.log(this.props);
-    console.log(this.state);
     const { fetchRecipesDispatch } = this.props;
     fetchRecipesDispatch();
+  };
+
+  componentDidUpdate(prevProps){
+    
   }
   
   render() {
-    // const { children, inputValue } = this.props
+    
+    const { recipes } = this.props;
+    
     return (
       <div>
         <h1>Building Real Projects With REDUX</h1>
-
+        <ul> 
+          {recipes.map((data, i) => {
+            return <li key={i}> {data.name}</li>
+          })}
+        </ul>
       </div>
     )
   }
 }
 
 const mapStateToProps = (state) => ({
-
-  list : state
+  recipes : state.recipes.list
 
 })
 

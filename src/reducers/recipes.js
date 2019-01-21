@@ -4,11 +4,13 @@ import { ADD_RECIPE, GET_LIST_RECIPE, FETCH_RECIPES} from '../constants/action-t
 
 const initialState = {
     loading: false,
-    list: [{ "tes": 1 }]
+    list: []
   };
 
 // const recipesReducer = (recipes = [], action) =>{
 const recipesReducer = ( state = initialState, action) =>{
+
+    // console.log(action);
 
     switch (action.type){
 
@@ -25,8 +27,9 @@ const recipesReducer = ( state = initialState, action) =>{
   
         case FETCH_RECIPES.SUCCESS:
             return Object.assign({}, state, {
-            loading: false,
-            list: action.payload.recipes.map((recipe) => recipe.name)
+                loading: false,
+                // list: action.payload.recipes.map((recipe) => recipe.name)
+                list: action.payload.recipes
             });
   
         case FETCH_RECIPES.ERROR:
