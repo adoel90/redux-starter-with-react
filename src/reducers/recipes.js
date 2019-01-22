@@ -10,12 +10,16 @@ const initialState = {
 // const recipesReducer = (recipes = [], action) =>{
 const recipesReducer = ( state = initialState, action) =>{
 
-    // console.log(action);
+    console.log(action);
+    console.log(state);
 
     switch (action.type){
 
-        // case ADD_RECIPE :
-        //     return recipes.concat({name: action.name});
+        case ADD_RECIPE :
+            console.log("Not work, because i have to FORCE DATA in to JSON File in React Public Folder ", state);
+            // return state.list.concat({name:action.name})
+            // return recipes.concat({name: action.name});
+            return state;
 
         // case GET_LIST_RECIPE:
         //     return action.payload.recipes;
