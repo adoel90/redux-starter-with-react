@@ -11,3 +11,18 @@
 
 * Deeply Chaining API in Redux
     - https://github.com/redux-saga/redux-saga
+
+* Deeply Test
+    - xxx, cobanin coding langsung!
+
+
+# To Do Explore
+
+* Selesai-keun "redux-starter-with-react"
+
+    - CRUD with redux-axios-middleware
+
+    - Test with Jest & Enzyme
+
+
+* Saga Basic for Beginner Tutorial
