@@ -14,14 +14,13 @@ class App extends Component {
 
     this.handleInputChange = this.handleInputChange.bind(this);
 
-    this.state = {
-      data: {}
-    }
+    this.state = {}
 
   }
 
   componentDidMount(){
     const { fetchRecipesDispatch } = this.props;
+    
     fetchRecipesDispatch();
   };
 
@@ -49,15 +48,14 @@ class App extends Component {
 
   handleClickRecipe = () => {
     const { addReceipentDispatch } = this.props;
-    const { data }= this.state;
-    addReceipentDispatch(data.recipe)
+    
+    // addReceipentDispatch(data.recipe)
     
   }
   
   render() {
     
     const { recipes } = this.props;
-    
     return (
       <div>
         <h1>Building Real Projects With REDUX</h1>
@@ -66,7 +64,7 @@ class App extends Component {
             return <li key={i}> {data.name}</li>
           })}
         </ul>
-
+          
         <br />
         <input type="text" name="recipe" placeholder="Add recipe" onChange={(e) => this.handleInputChange(e, 'data')}/>
         <button onClick={() => this.handleClickRecipe() }>Add</button>

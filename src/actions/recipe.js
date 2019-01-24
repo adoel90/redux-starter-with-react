@@ -17,7 +17,10 @@ export const addReceipent = (name) => ({
 export const fetchRecipes = () => ({
     type: API_REQUEST,
     payload: {
+      // url: 'http://localhost:5000/api/users?page=2',
       url: './db.json',
       next: FETCH_RECIPES
     }
   });
+
+  // /api/users?page=2

@@ -23,6 +23,7 @@ const apiMiddleware = ({ dispatch }) => (next) => (action) => {
         axios
             .get(action.payload.url) 
             .then((response) => {
+
                 if (response.status !== 200) {
                     console.log(`Error fetching recipes: ${ response.status }`);
                 } else {

@@ -13,7 +13,7 @@
     - https://github.com/redux-saga/redux-saga
 
 * Deeply Test
-    - xxx, cobanin coding langsung!
+    - xxx, cobain coding langsung!
 
 
 # To Do Explore
@@ -24,5 +24,9 @@
 
     - Test with Jest & Enzyme
 
-
 * Saga Basic for Beginner Tutorial
+
+
+# Notes, Kamis 24 January 2019
+
+* Gw buat "redux-starter-with-react-v2" with nama branch : "crud-with-reqres-api"

@@ -9,10 +9,6 @@ const initialState = {
 
 // const recipesReducer = (recipes = [], action) =>{
 const recipesReducer = ( state = initialState, action) =>{
-
-    console.log(action);
-    console.log(state);
-
     switch (action.type){
 
         case ADD_RECIPE :
@@ -30,10 +26,12 @@ const recipesReducer = ( state = initialState, action) =>{
             });
   
         case FETCH_RECIPES.SUCCESS:
+
             return Object.assign({}, state, {
                 loading: false,
                 // list: action.payload.recipes.map((recipe) => recipe.name)
                 list: action.payload.recipes
+                
             });
   
         case FETCH_RECIPES.ERROR:
