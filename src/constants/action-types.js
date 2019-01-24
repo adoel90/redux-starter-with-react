@@ -13,3 +13,7 @@ export const GET_LIST_RECIPE = '[API] Get List Recipes...';
 export const API_REQUEST = 'API_REQUEST';
 
 export const ADD_INGREDIENT = '[Action] Add Ingredient...';
+
+
+//CRUD WITH REQRES API
+export const ADD_USER = '[Action] Add user & job ...'

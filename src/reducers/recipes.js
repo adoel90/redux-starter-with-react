@@ -27,12 +27,17 @@ const recipesReducer = ( state = initialState, action) =>{
   
         case FETCH_RECIPES.SUCCESS:
 
-            return Object.assign({}, state, {
-                loading: false,
-                // list: action.payload.recipes.map((recipe) => recipe.name)
-                list: action.payload.recipes
+            // return Object.assign({}, state, {
+            //     loading: false,
+            //     // list: action.payload.recipes.map((recipe) => recipe.name)
+            //     list: action.payload.recipes
                 
-            });
+            // });
+            return {
+                ...state,
+                loading: false,
+                list: action.payload.recipes
+            }
   
         case FETCH_RECIPES.ERROR:
             return Object.assign({}, state, {

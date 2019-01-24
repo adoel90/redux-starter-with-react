@@ -5,6 +5,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { fetchRecipes, addReceipent} from '../actions/recipe';
+import { addUser } from '../actions/user'
 
 //*Sementara tak menggunakan Component ! Only use in Container.
 class App extends Component {
@@ -13,6 +14,7 @@ class App extends Component {
     super();
 
     this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleSave = this.handleSave.bind(this);
 
     this.state = {}
 
@@ -25,7 +27,20 @@ class App extends Component {
   };
 
   componentDidUpdate(prevProps){
-    
+
+    const { recipes, user } = this.props;
+    console.log("Recipes : ", recipes);
+    console.log("User : ", user);
+
+    if(prevProps.recipes !== recipes){
+      console.log("Recipes v2 : ", recipes);
+    };
+
+    if(prevProps.user !== user){
+      console.log(console.log("User v2: ", user));
+    }
+
+
   }
 
   handleInputChange = (e, data ) => {
@@ -42,6 +57,8 @@ class App extends Component {
               ...this.state[data],
               [name]: value
         }
+    },() => {
+      // console.log(this.state)
     });
   };
 
@@ -52,10 +69,18 @@ class App extends Component {
     // addReceipentDispatch(data.recipe)
     
   }
+
+  handleSave = (e) => {
+    e.preventDefault();
+    const { addUserDispatch } = this.props;
+    addUserDispatch(this.state)
+
+  };
   
   render() {
     
     const { recipes } = this.props;
+    
     return (
       <div>
         <h1>Building Real Projects With REDUX</h1>
@@ -64,17 +89,32 @@ class App extends Component {
             return <li key={i}> {data.name}</li>
           })}
         </ul>
-          
-        <br />
         <input type="text" name="recipe" placeholder="Add recipe" onChange={(e) => this.handleInputChange(e, 'data')}/>
-        <button onClick={() => this.handleClickRecipe() }>Add</button>
+        <button onClick={() => this.handleClickRecipe() }>Add</button>    
+        
+        <hr />
+      
+        <h2>Building CRUD with "ReqRes API"</h2>
+
+        <form>
+          <input type="text" name="name" placeholder="Type your name..." onChange={(e) => this.handleInputChange(e, 'data')} />
+          <label> Type your name</label>
+          <br />
+          <br />
+          <input type="text" name="job" placeholder="Job ?" onChange={(e) => this.handleInputChange(e, 'data')} />
+          <label> Your job here</label>
+          <br />
+          <br />
+          <button onClick={(e) => this.handleSave(e) }>Save</button>
+        </form>
       </div>
     )
   }
 }
 
 const mapStateToProps = (state) => ({
-  recipes : state.recipes.list
+  recipes : state.recipes.list,
+  user: state.user.user
 
 })
 
@@ -82,7 +122,8 @@ const mapDispatchToProps = (dispatch) => {
 
   return {
     fetchRecipesDispatch : () => dispatch(fetchRecipes()),
-    addReceipentDispatch: (data) => dispatch(addReceipent(data))
+    addReceipentDispatch: (data) => dispatch(addReceipent(data)),
+    addUserDispatch : (data) => dispatch(addUser(data))
   }
 }
 
