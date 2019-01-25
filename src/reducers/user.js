@@ -1,5 +1,6 @@
 
-import { ADD_USER } from '../constants/action-types'
+import { ADD_USER, CREATE_USER } from '../constants/action-types'
+
 
 const initialState = {
     loading : false,
@@ -18,6 +19,27 @@ const userReducer = (state = initialState, action) => {
                 // user: action.payload
                 
             }
+
+        case CREATE_USER.PENDING:
+            return {
+                ...state,
+                loading: true
+            }
+
+        case CREATE_USER.SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                user: action.payload.data.data
+            }
+
+        case CREATE_USER.ERROR:
+            return {
+                ...state,
+                loading: false
+            }
+
+            
     }
 
     return state;

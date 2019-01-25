@@ -26,6 +26,7 @@ const apiMiddleware = ({ dispatch }) => (next) => (action) => {
 
                 if (response.status !== 200) {
                     console.log(`Error fetching recipes: ${ response.status }`);
+                    
                 } else {
 
                     dispatch({ type: action.payload.next.SUCCESS, payload: response.data})

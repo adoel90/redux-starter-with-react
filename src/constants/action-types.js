@@ -14,6 +14,8 @@ export const API_REQUEST = 'API_REQUEST';
 
 export const ADD_INGREDIENT = '[Action] Add Ingredient...';
 
+// export const CREATE_USER = '[API] Create user...';
+export const CREATE_USER = asyncActionType('CREATE_USER');
 
 //CRUD WITH REQRES API
-export const ADD_USER = '[Action] Add user & job ...'
+export const ADD_USER = '[Action] Add user & job ...';
