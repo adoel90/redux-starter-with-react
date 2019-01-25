@@ -1,4 +1,4 @@
-import { ADD_USER, CREATE_USER, API_POST_USER_REQUEST, API_GET_USER_REQUEST, GET_LIST_USERS } from '../constants/action-types';
+import { CREATE_USER, API_POST_USER_REQUEST, API_GET_USER_REQUEST, GET_LIST_USERS } from '../constants/action-types';
 import { URL_API } from '../constants/config-api';
 
 //*

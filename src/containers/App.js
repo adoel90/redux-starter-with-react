@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+// import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { fetchRecipes, addReceipent} from '../actions/recipe';
@@ -26,7 +26,7 @@ class App extends Component {
     const { fetchRecipesDispatch, getListUserDispatch } = this.props;
     
     fetchRecipesDispatch();
-    getListUserDispatch();
+    getListUserDispatch();  
   };
 
   componentDidUpdate(prevProps){
@@ -65,10 +65,7 @@ class App extends Component {
   };
 
 
-  handleClickRecipe = () => {
-    const { addReceipentDispatch } = this.props;
-    // addReceipentDispatch(data.recipe)
-    
+  handleClickRecipe = () => {    
   }
 
   handleSave = (e) => {

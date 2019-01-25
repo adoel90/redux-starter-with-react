@@ -1,6 +1,4 @@
-
-
-import { ADD_RECIPE, GET_LIST_RECIPE, FETCH_RECIPES} from '../constants/action-types';
+import { ADD_RECIPE, FETCH_RECIPES} from '../constants/action-types';
 
 const initialState = {
     loading: false,
@@ -43,6 +41,9 @@ const recipesReducer = ( state = initialState, action) =>{
             return Object.assign({}, state, {
                 loading: false
             });
+
+            default :
+            console.log("[Default] No Action fired !");
 
     }
 

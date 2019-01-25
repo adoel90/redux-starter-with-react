@@ -1,4 +1,4 @@
-import { ADD_RECIPE, GET_LIST_RECIPE, FETCH_RECIPES, API_RECIPE_REQUEST } from '../constants/action-types';
+import { ADD_RECIPE, FETCH_RECIPES, API_RECIPE_REQUEST } from '../constants/action-types';
 
 
 export const addReceipent = (name) => ({

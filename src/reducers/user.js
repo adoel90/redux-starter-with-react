@@ -11,7 +11,6 @@ const initialState = {
 const userReducer = (state = initialState, action) => {
 
     switch (action.type) {
-        
         case ADD_USER:
             return {
                 ...state,
@@ -37,6 +36,10 @@ const userReducer = (state = initialState, action) => {
                 ...state,
                 loading: false
             }
+
+        default :
+            console.log("[Default] No Action fired !");
+            
     }
 
     return state;

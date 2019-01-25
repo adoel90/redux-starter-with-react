@@ -1,21 +1,21 @@
 import axios from 'axios';
-import { FETCH_RECIPES, API_RECIPE_REQUEST   } from '../constants/action-types';
-import { getListRecipe } from '../actions/recipe';
+import { API_RECIPE_REQUEST   } from '../constants/action-types';
+// import { getListRecipe } from '../actions/recipe';
 // import * as URL from '../db/db.json';
 //  [In this case, we can not use this way to get data from json], we put file .json in PUBLIC_FOLDER
 
-function fetchData(url, callback) {
+// function fetchData(url, callback) {
 
-    fetch(url)
-        .then((response) => {  
-            if (response.status !== 200) {
-                console.log(`Error fetching recipes: ${ response.status }`);
-            } else {
-                response.json().then(callback);
-            }
-        })
-        .catch((err) => console.log(`Error fetching recipes: ${ err }`))
-};
+//     fetch(url)
+//         .then((response) => {  
+//             if (response.status !== 200) {
+//                 console.log(`Error fetching recipes: ${ response.status }`);
+//             } else {
+//                 response.json().then(callback);
+//             }
+//         })
+//         .catch((err) => console.log(`Error fetching recipes: ${ err }`))
+// };
 
 const apiMiddleware = ({ dispatch }) => (next) => (action) => {
 
