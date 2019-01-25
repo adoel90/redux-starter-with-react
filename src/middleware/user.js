@@ -1,19 +1,14 @@
 
 import axios from 'axios'
-import { API_REQUEST } from '../constants/action-types';
+import { API_POST_USER_REQUEST, API_GET_USER_REQUEST } from '../constants/action-types';
 
 
 const userMiddleware = ({ dispatch }) => (next) => (action) => {
 
-    if(action.type === API_REQUEST){
-
-        console.log(action.payload.data != null ? action.payload.data.name : action.payload.data);
-        
+    if(action.type === API_POST_USER_REQUEST){        
         axios
-            .post(action.payload.url, action.payload.data)
+            .post(action.payload.url, action.data)
             .then(function (response) {
-                console.log(response);
-
                 dispatch({ type: action.payload.next.SUCCESS})
             })
             .catch(function  (error) {
@@ -22,6 +17,10 @@ const userMiddleware = ({ dispatch }) => (next) => (action) => {
             });
 
         dispatch({ type: action.payload.next.PENDING });
+    }
+
+    if (action.type === API_GET_USER_REQUEST) {
+        console.log(action);
     }
 
     next(action);

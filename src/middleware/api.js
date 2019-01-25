@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { FETCH_RECIPES, API_REQUEST   } from '../constants/action-types';
+import { FETCH_RECIPES, API_RECIPE_REQUEST   } from '../constants/action-types';
 import { getListRecipe } from '../actions/recipe';
 // import * as URL from '../db/db.json';
 //  [In this case, we can not use this way to get data from json], we put file .json in PUBLIC_FOLDER
@@ -19,7 +19,7 @@ function fetchData(url, callback) {
 
 const apiMiddleware = ({ dispatch }) => (next) => (action) => {
 
-    if(action.type === API_REQUEST){
+    if(action.type === API_RECIPE_REQUEST){
         axios
             .get(action.payload.url) 
             .then((response) => {

@@ -1,4 +1,4 @@
-import { ADD_RECIPE, GET_LIST_RECIPE, FETCH_RECIPES, API_REQUEST } from '../constants/action-types';
+import { ADD_RECIPE, GET_LIST_RECIPE, FETCH_RECIPES, API_RECIPE_REQUEST } from '../constants/action-types';
 
 
 export const addReceipent = (name) => ({
@@ -15,7 +15,8 @@ export const addReceipent = (name) => ({
 // });
 
 export const fetchRecipes = () => ({
-    type: API_REQUEST,
+  
+    type: API_RECIPE_REQUEST,
     payload: {
       // url: 'http://localhost:5000/api/users?page=2',
       url: './db.json',

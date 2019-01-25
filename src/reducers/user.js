@@ -15,9 +15,8 @@ const userReducer = (state = initialState, action) => {
         case ADD_USER:
             return {
                 ...state,
-                loading: false
-                // user: action.payload
-                
+                loading: false,
+                user: action.data
             }
 
         case CREATE_USER.PENDING:
@@ -30,7 +29,7 @@ const userReducer = (state = initialState, action) => {
             return {
                 ...state,
                 loading: false,
-                user: action.payload.data.data
+                user: action.data
             }
 
         case CREATE_USER.ERROR:
@@ -38,8 +37,6 @@ const userReducer = (state = initialState, action) => {
                 ...state,
                 loading: false
             }
-
-            
     }
 
     return state;

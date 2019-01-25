@@ -5,7 +5,9 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { fetchRecipes, addReceipent} from '../actions/recipe';
-import { addUser } from '../actions/user'
+import { addUser, getListUser } from '../actions/user'
+
+import './App.css';
 
 //*Sementara tak menggunakan Component ! Only use in Container.
 class App extends Component {
@@ -21,26 +23,28 @@ class App extends Component {
   }
 
   componentDidMount(){
-    const { fetchRecipesDispatch } = this.props;
+    const { fetchRecipesDispatch, getListUserDispatch } = this.props;
     
     fetchRecipesDispatch();
+    getListUserDispatch();
   };
 
   componentDidUpdate(prevProps){
 
     const { recipes, user } = this.props;
-    console.log("Recipes : ", recipes);
-    console.log("User : ", user);
+    const { data } = this.state;
 
     if(prevProps.recipes !== recipes){
-      console.log("Recipes v2 : ", recipes);
+      if(recipes.length != null){
+        console.log("Recipes : ", recipes);
+      }
     };
 
     if(prevProps.user !== user){
-      console.log(console.log("User v2: ", user));
+      if(user.length != null){
+        console.log(console.log("User : ", data != null ? data.name : data));
+      }
     }
-
-
   }
 
   handleInputChange = (e, data ) => {
@@ -57,15 +61,12 @@ class App extends Component {
               ...this.state[data],
               [name]: value
         }
-    },() => {
-      // console.log(this.state)
     });
   };
 
 
   handleClickRecipe = () => {
     const { addReceipentDispatch } = this.props;
-    
     // addReceipentDispatch(data.recipe)
     
   }
@@ -95,18 +96,24 @@ class App extends Component {
         <hr />
       
         <h2>Building CRUD with "ReqRes API"</h2>
-
-        <form>
-          <input type="text" name="name" placeholder="Type your name..." onChange={(e) => this.handleInputChange(e, 'data')} />
-          <label> Type your name</label>
-          <br />
-          <br />
-          <input type="text" name="job" placeholder="Job ?" onChange={(e) => this.handleInputChange(e, 'data')} />
-          <label> Your job here</label>
-          <br />
-          <br />
-          <button onClick={(e) => this.handleSave(e) }>Save</button>
-        </form>
+        <div className="grid-container">
+          <div className="grid-item">
+            <form>
+              <input type="text" name="name" placeholder="Type your name..." onChange={(e) => this.handleInputChange(e, 'data')} />
+              <label> Type your name</label>
+              <br />
+              <br />
+              <input type="text" name="job" placeholder="Job ?" onChange={(e) => this.handleInputChange(e, 'data')} />
+              <label> Your job here</label>
+              <br />
+              <br />
+              <button onClick={(e) => this.handleSave(e) }>Save</button>
+            </form>
+          </div>
+          <div className="grid-item">
+            
+          </div>
+        </div>
       </div>
     )
   }
@@ -114,7 +121,7 @@ class App extends Component {
 
 const mapStateToProps = (state) => ({
   recipes : state.recipes.list,
-  user: state.user.user
+  user: state
 
 })
 
@@ -123,7 +130,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
     fetchRecipesDispatch : () => dispatch(fetchRecipes()),
     addReceipentDispatch: (data) => dispatch(addReceipent(data)),
-    addUserDispatch : (data) => dispatch(addUser(data))
+    addUserDispatch : (data) => dispatch(addUser(data)),
+    getListUserDispatch : () => dispatch(getListUser())
   }
 }
 
