@@ -12,3 +12,16 @@
     padding: 20px;
     text-align: left;
   }
+
+
+table,
+  td {
+      border: 1px dashed #333;
+      opacity: 0.7;
+  }
+
+thead,
+  tfoot {
+      background-color:grey;
+      color: #fff;
+  }

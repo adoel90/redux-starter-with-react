@@ -13,7 +13,8 @@ const ingredientsReducer = (ingredients = [], action) => {
             return ingredients.concat(newIngredient);
 
         default :
-            console.log("[Default] No Action fired !");
+            // console.log(";(");
+            break
     }  
     
     return ingredients;

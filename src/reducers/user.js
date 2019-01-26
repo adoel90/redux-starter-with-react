@@ -1,5 +1,5 @@
 
-import { ADD_USER, CREATE_USER } from '../constants/action-types'
+import { ADD_USER, CREATE_USER, GET_LIST_USERS} from '../constants/action-types'
 
 
 const initialState = {
@@ -25,6 +25,9 @@ const userReducer = (state = initialState, action) => {
             }
 
         case CREATE_USER.SUCCESS:
+
+            console.log(action)
+
             return {
                 ...state,
                 loading: false,
@@ -37,8 +40,28 @@ const userReducer = (state = initialState, action) => {
                 loading: false
             }
 
+        case GET_LIST_USERS.PENDING :
+            return {
+                ...state, 
+                loading: false
+            }
+
+        case GET_LIST_USERS.SUCCESS:
+            return {
+                ...state,
+                loading: true,
+                user: action.payload.data
+            }
+
+        case GET_LIST_USERS.ERROR:
+            return {
+                ...state,
+                loading: false
+            }
+
         default :
-            console.log("[Default] No Action fired !");
+            // console.log(":)");
+            break
             
     }
 

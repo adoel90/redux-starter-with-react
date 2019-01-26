@@ -14,7 +14,7 @@ export const addUser = (data) => ({
 export const getListUser = () => ({
     type: API_GET_USER_REQUEST,
     payload: {
-        url: URL_API + '/users',
+        url: URL_API + '/users?page=2',
         next: GET_LIST_USERS
     }
 })

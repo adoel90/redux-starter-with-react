@@ -43,7 +43,8 @@ const recipesReducer = ( state = initialState, action) =>{
             });
 
             default :
-            console.log("[Default] No Action fired !");
+            // console.log(";)");
+                break
 
     }
 
