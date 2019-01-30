@@ -5,8 +5,11 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import Modal from 'react-awesome-modal';
-import RecipesView from '../components/RecipesView'
-import FormCreateUserView from '../components/FormCreateUserView'
+import RecipesView from '../components/RecipesView';
+import FormCreateUserView from '../components/FormCreateUserView';
+import UserListView from '../components/UserListView';
+
+
 import { fetchRecipes, addReceipent} from '../actions/recipe';
 import { addUser, getListUser } from '../actions/user'
 
@@ -22,10 +25,13 @@ class App extends Component {
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSave = this.handleSave.bind(this);
     this.handleClickRecipe = this.handleClickRecipe.bind(this)  
-   
-
+    this.openModal = this.openModal.bind(this);
+    this.handleUserSelect = this.handleUserSelect.bind(this);
+    
     this.state = {
-      visible : false
+      visible : false,
+      selected: {},
+      userSelected: {}
     }
 
   }
@@ -50,7 +56,6 @@ class App extends Component {
 
     if(prevProps.user !== user){
       
-      console.log(user)
       if(user.length != null){
         console.log(user)
         // console.log(console.log("User : ", data != null ? data.name : data));
@@ -58,7 +63,10 @@ class App extends Component {
     }
 
     if(prevProps.userList !== userList){
-      // console.log(userList);
+      if(userList != undefined){
+        console.log(userList);
+      } else { console.log("User List ")}
+      
     }
   };
 
@@ -92,13 +100,19 @@ class App extends Component {
     console.log(this.state)
     addUserDispatch(this.state)
 
-    
-
   };
-  openModal() {
+  openModal(e, data) {
+
+    e.preventDefault();
     this.setState({
-        visible : true
+        ...this.state,
+        visible : true,
+        userSelected: data
+    }, () => {
+      console.log(this.state)
     }); 
+
+    
   }
 
   closeModal() {
@@ -106,10 +120,23 @@ class App extends Component {
         visible : false
     });
   }
-  
-  render() {
+
+  handleUserSelect = (e) => {
+    const { selected } = this.state;
+    selected[e.target.name] = e.target.checked;
+    console.log(selected[e.target.name])
+
+    this.setState({ selected  }, () => {
+      console.log(this.state);
+    });
+
+    
+  }
+
+  render() {  
     
     const { recipes, userList } = this.props;
+    const { selected, userSelected } = this.state;
     
     return (
       <div>
@@ -144,7 +171,7 @@ class App extends Component {
               <br />
               <br />
 
-              <button onClick={(e) => handleSave(e) }>Save</button>
+              <button onClick={(e) => this.handleSave(e) }>Save</button>
             </form>
            
           </div>
@@ -159,18 +186,35 @@ class App extends Component {
                   </tr>
                 </thead>
                 <tbody>
-                  { userList.user.length != null ? userList.user.map((data, i) => {
+                {/*
+                  userList.user.length != null ? userList.user.map((data, i) => {
+                    return (
+
+                        <UserListView 
+                          data = {data}
+                          selected={this.state.selected[data.id]}
+                          openModal = {this.openModal}
+                          handleUserSelect = {this.handleUserSelect}
+                          {...this.state}
+                          {...this.props}
+                        />
+                    )
+                  }) : null
+                */}
+                  {/*
+                    
+                    userList.length != null  ? userList .map((data, i) => {
                     return (
                       <tr key={i}>
                         <td><img src={data.avatar} alt="Avatar" /></td>
                         <td>{data.first_name}</td>
                         <td>{data.last_name}  </td>
                         <td>
-                          <input type="button" value="Edit" onClick={() => this.openModal()} />
+                          <input type="button" value="Edit" onClick={(e) => this.openModal(e, data)} />
                         </td>
                       </tr>
                     ) 
-                  }) : null }
+                  }) : null */}
                 </tbody>
               </table>
                   
@@ -179,9 +223,20 @@ class App extends Component {
 
         <Modal visible={this.state.visible} width="400" height="300" effect="fadeInDown" onClickAway={() => this.closeModal()}>
             <div>
-                <h1>Title</h1>
-                <p>Some Contents</p>
-                <a href="javascript:void(0);" onClick={() => this.closeModal()}>Close</a>
+                <h1>Edit</h1>
+                <input type="text" placeholder={userSelected.first_name} /><label>Edit First Name</label>
+                <input type="text" placeholder={userSelected.last_name} /><label>Edit Last Name</label>
+
+                <br />
+                <br />
+                
+                <button type="button" onClick={() => this.closeModal()}>
+                  Close
+                </button>
+
+                <button type="button">
+                  Save
+                </button>
             </div>
         </Modal>
       </div>
@@ -191,8 +246,8 @@ class App extends Component {
 
 const mapStateToProps = (state) => ({
   recipes : state.recipes.list,
-  userList: state.user,
-  user: state
+  userList: state.user.user,
+  user: state.user
 });
 
 const mapDispatchToProps = (dispatch) => {

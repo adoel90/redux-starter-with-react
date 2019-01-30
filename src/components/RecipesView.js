@@ -16,8 +16,6 @@ const RecipesView = props => {
             <hr />
         </div>
     )
-    
-
 }
 
 export default RecipesView;

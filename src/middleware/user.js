@@ -5,15 +5,13 @@ import { API_POST_USER_REQUEST, API_GET_USER_REQUEST } from '../constants/action
 
 const userMiddleware = ({ dispatch }) => (next) => (action) => {
 
-    console.log(action);
-
     if(action.type === API_POST_USER_REQUEST){    
         
         console.log(action)
         axios
             .post(action.payload.url, action.data.data)
             .then(function (response) {
-                console.log(response)
+                // console.log(response)
                 dispatch({ type: action.payload.next.SUCCESS})
             })
             .catch(function  (error) {

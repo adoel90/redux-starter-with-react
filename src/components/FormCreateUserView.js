@@ -3,10 +3,7 @@ import React from 'react'
 
 const FormCreateUserView = props => {
     const { handleInputChange, handleSave} = props;
-    console.log(props)
-    // console.log(state);
     
-
     return (
         <form>
             <input type="text" name="name" placeholder="Type your name..." onChange={(e) => handleInputChange(e, 'data')} />

@@ -26,7 +26,7 @@ const userReducer = (state = initialState, action) => {
 
         case CREATE_USER.SUCCESS:
 
-            console.log(action)
+            // console.log(action)
 
             return {
                 ...state,
